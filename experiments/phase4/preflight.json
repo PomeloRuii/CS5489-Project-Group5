@@ -1,0 +1,47 @@
+{
+  "v1": {
+    "train": {
+      "loss": 1.2017937178081937,
+      "iou": 0.13187432473161667
+    },
+    "validation": {
+      "loss": 1.2128022623062134,
+      "iou": 0.12989876153302596
+    }
+  },
+  "overfit": {
+    "IDs": [
+      "000500",
+      "001308",
+      "000476",
+      "000689",
+      "000010",
+      "000823",
+      "004116",
+      "004225"
+    ],
+    "initial": {
+      "steps": 0,
+      "loss": 1.5284905433654785,
+      "iou": 0.14577293395996094
+    },
+    "final": {
+      "steps": 300,
+      "loss": 0.3612760305404663,
+      "iou": 0.7111105463140639
+    }
+  },
+  "parameters_v1": 118273,
+  "parameters_srm": 118705,
+  "preview_medians": {
+    "target_fraction_256": 0.04122161865234375,
+    "native_then_resize_inside_mean": 0.03907068073749542,
+    "native_then_resize_outside_mean": 0.02303562220185995,
+    "native_then_resize_all_mean": 0.023346354253590107,
+    "resize_then_srm_inside_mean": 0.6692836582660675,
+    "resize_then_srm_outside_mean": 0.43433162569999695,
+    "resize_then_srm_all_mean": 0.4456198364496231
+  },
+  "stable_initial_common_weights": true,
+  "stable_rng_after_init": true
+}

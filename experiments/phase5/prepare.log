@@ -1,0 +1,12 @@
+Sliding-window coverage, constant fusion and coordinate round-trip passed.
+Training data distribution {'shorter_side': {'min': 518.0, 'p05': 680.0, 'median': 1278.0, 'p95': 3168.0, 'max': 4079.0}, 'longer_side': {'min': 563.0, 'p05': 1024.0, 'median': 1800.0, 'p95': 3185.1500000000005, 'max': 4079.0}, 'equivalent_edit_square_side': {'min': 20.223748416156685, 'p05': 84.4961531283984, 'median': 333.7566420833612, 'p95': 1364.9523884822515, 'max': 3599.915415672985}, 'foreground_fraction': {'min': 0.00014566523067104304, 'p05': 0.003612215181986491, 'median': 0.04732158645190329, 'p95': 0.4827064596410389, 'max': 1.0}, 'training_images_with_padding': 0, 'training_edits_below_1_percent': 764}
+Cached paired crops for 500/4500 training images.
+Cached paired crops for 1000/4500 training images.
+Cached paired crops for 1500/4500 training images.
+Cached paired crops for 2000/4500 training images.
+Cached paired crops for 2500/4500 training images.
+Cached paired crops for 3000/4500 training images.
+Cached paired crops for 3500/4500 training images.
+Cached paired crops for 4000/4500 training images.
+Cached paired crops for 4500/4500 training images.
+Paired caches and sampling statistics ready.

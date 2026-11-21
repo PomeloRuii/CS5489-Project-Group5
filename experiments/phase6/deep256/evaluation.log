@@ -1,0 +1,134 @@
+Native validation: 120/500
+Native validation: 240/500
+Native validation: 360/500
+Native validation: 480/500
+Native validation: 500/500
+{
+  "threshold": 0.5,
+  "historical_pixel_counts_check": {
+    "V1": {
+      "rows_identical": 500,
+      "max_pixel_diff": 0
+    },
+    "Weighted": {
+      "rows_identical": 500,
+      "max_pixel_diff": 0
+    },
+    "384": {
+      "rows_identical": 500,
+      "max_pixel_diff": 0
+    }
+  },
+  "time_scope": "sum over 500 decoded RGB images, CPU resize through returned native mask, two warmups per model, excluding image decoding and metric computation",
+  "pr_scope": "exact pooled trapezoidal pixel PR-AUC on the same 500 x 256 x 256 grid",
+  "results": {
+    "V1": {
+      "images": 500,
+      "TP": 38708832,
+      "FP": 64155192,
+      "FN": 186802222,
+      "precision": 0.37631069148140656,
+      "recall": 0.17164937732941463,
+      "dice": 0.23575986482141012,
+      "iou": 0.13363252548244783,
+      "mean_image_iou": 0.14300716116666104,
+      "mean_image_dice": 0.19051353687124672,
+      "predicted_fraction": 0.059612881154427935,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 68,
+      "zero_overlap": 191,
+      "inference_seconds": 4.026219600054901,
+      "parameters": 118273,
+      "input_size": 256,
+      "checkpoint_epoch": 9,
+      "val_iou_input_grid": 0.1298987615330259,
+      "training_seconds": 65.35882879998826,
+      "pr_auc_256_grid": 0.2448390147045569
+    },
+    "Weighted": {
+      "images": 500,
+      "TP": 50111761,
+      "FP": 131047663,
+      "FN": 175399293,
+      "precision": 0.27661691505488556,
+      "recall": 0.22221421128207755,
+      "dice": 0.24644897385445325,
+      "iou": 0.1405428015380704,
+      "mean_image_iou": 0.1438512462391918,
+      "mean_image_dice": 0.20007894470398258,
+      "predicted_fraction": 0.10498748535169711,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 45,
+      "zero_overlap": 133,
+      "inference_seconds": 4.042689899899415,
+      "parameters": 118273,
+      "input_size": 256,
+      "checkpoint_epoch": 7,
+      "val_iou_input_grid": 0.1352604095984955,
+      "training_seconds": 48.48193619999802,
+      "pr_auc_256_grid": 0.22851122444917
+    },
+    "384": {
+      "images": 500,
+      "TP": 38036175,
+      "FP": 62537350,
+      "FN": 187474879,
+      "precision": 0.37819272020146455,
+      "recall": 0.16866656567531274,
+      "dice": 0.23329024093469933,
+      "iou": 0.13204785887305245,
+      "mean_image_iou": 0.14911293890338145,
+      "mean_image_dice": 0.19473168475062733,
+      "predicted_fraction": 0.058285466190851,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 107,
+      "zero_overlap": 225,
+      "inference_seconds": 4.470644399974844,
+      "parameters": 118273,
+      "input_size": 384,
+      "checkpoint_epoch": 9,
+      "val_iou_input_grid": 0.1305546253431799,
+      "training_seconds": 122.93251100000634,
+      "pr_auc_256_grid": 0.2287270120996566
+    },
+    "Deep256": {
+      "images": 500,
+      "TP": 31512148,
+      "FP": 49610984,
+      "FN": 193998906,
+      "precision": 0.3884483651346203,
+      "recall": 0.13973660022891826,
+      "dice": 0.20553577806226733,
+      "iou": 0.11453879968714102,
+      "mean_image_iou": 0.1296832219472099,
+      "mean_image_dice": 0.17704827057424974,
+      "predicted_fraction": 0.047013362288752865,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 47,
+      "zero_overlap": 148,
+      "inference_seconds": 4.185380100127077,
+      "parameters": 487297,
+      "input_size": 256,
+      "checkpoint_epoch": 7,
+      "val_iou_input_grid": 0.11161277716204,
+      "training_seconds": 74.2164057000191,
+      "pr_auc_256_grid": 0.24572304460890854
+    },
+    "All foreground": {
+      "images": 500,
+      "TP": 225511054,
+      "FP": 1500022455,
+      "FN": 0,
+      "precision": 0.13069062572461465,
+      "recall": 1.0,
+      "dice": 0.23116955735059752,
+      "iou": 0.13069062572461465,
+      "mean_image_iou": 0.12306835349510746,
+      "mean_image_dice": 0.18494031697867194,
+      "predicted_fraction": 1.0,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 0,
+      "zero_overlap": 0
+    }
+  }
+}

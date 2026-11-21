@@ -1,0 +1,48 @@
+{
+  "group": "A",
+  "sole_controlled_difference": "crop selection rule",
+  "requested_crop_ratios": {
+    "uniform": 1.0
+  },
+  "raw_crop_size": 256,
+  "split": "../../baseline/split.json",
+  "split_sha256": "0e02b642a2db6cac799fd99d816e06d14dba6e9422c3cd421e1b95a4ed8be217",
+  "model": "SmallUNet",
+  "initialization_sha256": "19555f00a7e24413e8620c50b47873e53ec7a28c6dcad457e6e0cd7aeb57dd04",
+  "seed": 5489,
+  "initialize_from_checkpoint": false,
+  "model_parameters": 118273,
+  "loss": "V1 unweighted BCEWithLogits + soft Dice, smoothing 1",
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "weight_decay": 0,
+  "scheduler": null,
+  "augmentation": null,
+  "precision": "float32",
+  "batch_size": 8,
+  "shuffle_train": true,
+  "shuffle_validation": false,
+  "epochs": 10,
+  "training_crops_per_epoch": 4500,
+  "optimizer_steps_per_epoch": 563,
+  "images_train": 4500,
+  "images_validation": 500,
+  "validation_crops": 2500,
+  "checkpoint_selection": "fixed five coordinate-based validation crops per image; pooled foreground IoU at .5; earliest tie",
+  "native_inference": {
+    "stride": 192,
+    "batch": 32,
+    "threshold": 0.5,
+    "weight": "separable nonperiodic Hann, each axis floored at .1; average sigmoid probabilities"
+  },
+  "pretrained_weights": false,
+  "external_data": false,
+  "device": "NVIDIA GeForce RTX 5090",
+  "torch": "2.9.1+cu128",
+  "cuda": "12.8"
+}

@@ -1,0 +1,14 @@
+{
+  "training_images": 4500,
+  "validation_images": 500,
+  "training_resolution": 256,
+  "epochs": 10,
+  "best_epoch": 9,
+  "val_iou_resized_micro": 0.1298987615330259,
+  "val_iou_full_resolution_micro": 0.13363252548244783,
+  "val_iou_full_resolution_mean_per_image": 0.14300716116666104,
+  "val_dice_full_resolution_micro": 0.23575986482141012,
+  "val_empty_predictions": 68,
+  "val_zero_overlap_images": 191,
+  "training_seconds": 65.35882879998826
+}

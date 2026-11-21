@@ -1,0 +1,19 @@
+CS5489 Phase 5 — verified environment
+
+Windows x64, Anaconda cs5489
+Python 3.11.16
+PyTorch 2.9.1+cu128 (CUDA 12.8, RTX 5090)
+NumPy 2.4.6
+pandas 2.2.3
+Pillow 12.3.0
+Matplotlib 3.11.1
+Notebook kernel: ipykernel 7.3.0
+
+The prepare/train/evaluate scripts use CUDA for the verified experiment.
+The TA inference notebook selects CUDA when available and can use CPU.
+No pretrained weights or external datasets are needed.
+
+For evaluation, the test notebook needs sliding.py and the model definition
+in ../baseline/project.py. Open the notebook with its enclosing folder as
+the working directory and set the three file/directory paths in its
+configuration cell.

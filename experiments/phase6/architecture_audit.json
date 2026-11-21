@@ -1,0 +1,82 @@
+{
+  "parameters": {
+    "V1": 118273,
+    "Deep": 487297
+  },
+  "receptive_field_input_pixels_one_axis": {
+    "V1": {
+      "center_index": 128,
+      "center_bounds": [
+        102,
+        153
+      ],
+      "center_width": 52,
+      "interior_widths": [
+        48,
+        52
+      ],
+      "minimum_width_border": 26,
+      "maximum_width": 52
+    },
+    "Deep": {
+      "center_index": 128,
+      "center_bounds": [
+        74,
+        181
+      ],
+      "center_width": 108,
+      "interior_widths": [
+        108,
+        116
+      ],
+      "minimum_width_border": 54,
+      "maximum_width": 116
+    }
+  },
+  "matches_v1_shared_initial_weights": true,
+  "matches_v1_shuffle_rng": true,
+  "gpu_forward": {
+    "device": "NVIDIA GeForce RTX 5090",
+    "shape": [
+      1,
+      1,
+      256,
+      256
+    ],
+    "finite": true
+  },
+  "validation": {
+    "same_ids_and_truth": true,
+    "images": 500,
+    "empty_targets": 0
+  },
+  "checkpoints": {
+    "V1": {
+      "checkpoint": "baseline\\model.pth",
+      "sha256": "6349ac9464a8ec221b803babf8330b574fd67fa18debda02d71d6205a3df94d6",
+      "strict_state_dict_load": true,
+      "input_size": 256,
+      "native_micro_iou": 0.13363252548244783,
+      "native_macro_iou": 0.14300716116666104,
+      "native_dice": 0.23575986482141012
+    },
+    "Weighted": {
+      "checkpoint": "phase2\\weighted\\model.pth",
+      "sha256": "c4c158338f5b4d5a2c1614fc22ecae224d0c9b3169a724b87bcdf1de722c3f03",
+      "strict_state_dict_load": true,
+      "input_size": 256,
+      "native_micro_iou": 0.1405428015380704,
+      "native_macro_iou": 0.1438512462391918,
+      "native_dice": 0.24644897385445325
+    },
+    "384": {
+      "checkpoint": "phase3\\resolution384\\model.pth",
+      "sha256": "f8e885a67c723738d82b9562e6e883b0e2bdd8adda66ed0ef9d1afc5938fd14a",
+      "strict_state_dict_load": true,
+      "input_size": 384,
+      "native_micro_iou": 0.13204785887305245,
+      "native_macro_iou": 0.14911293890338145,
+      "native_dice": 0.23329024093469933
+    }
+  }
+}

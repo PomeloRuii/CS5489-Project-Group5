@@ -1,0 +1,71 @@
+{
+  "model": "DeepUNet",
+  "model_details": {
+    "change": "one additional downsample, 128-channel bridge, upsample and skip",
+    "initialization": "PyTorch defaults, V1 common tensors and post-init shuffle RNG matched",
+    "encoder_channels": [
+      16,
+      32,
+      64
+    ],
+    "decoder_channels": [
+      64,
+      32,
+      16
+    ]
+  },
+  "parameters": 487297,
+  "split_sha256": "0e02b642a2db6cac799fd99d816e06d14dba6e9422c3cd421e1b95a4ed8be217",
+  "train_images": 4500,
+  "validation_images": 500,
+  "input_size": 256,
+  "seed": 5489,
+  "training_epochs": 10,
+  "batch_size": 8,
+  "train_shuffle": true,
+  "validation_shuffle": false,
+  "dataloader_workers": 0,
+  "cpu_threads": 4,
+  "augmentation": "none",
+  "optimizer": "Adam",
+  "optimizer_arguments": {
+    "lr": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": null,
+    "capturable": false,
+    "differentiable": false,
+    "fused": null,
+    "decoupled_weight_decay": false
+  },
+  "scheduler": null,
+  "precision": "float32",
+  "pretrained_weights": false,
+  "external_data": false,
+  "input_processing": "RGB bilinear / 255, binary mask nearest",
+  "train_loss": "unweighted BCE + per-image soft Dice, smoothing 1",
+  "val_loss": "unweighted BCE + per-image soft Dice, smoothing 1",
+  "pos_weight": null,
+  "threshold": 0.5,
+  "selection": "maximum 256-grid validation foreground micro-IoU, earliest tie",
+  "torch": "2.9.1+cu128",
+  "cuda": "12.8",
+  "device": "NVIDIA GeForce RTX 5090"
+}
+{'epoch': 1, 'train_loss': 1.2727901890012954, 'val_loss': 1.2581127958297729, 'val_iou': 0.0, 'seconds': 26.213850200001616}
+{'epoch': 2, 'train_loss': 1.2425231526692708, 'val_loss': 1.2560024881362915, 'val_iou': 0.07601018203597938, 'seconds': 5.34957829999621}
+{'epoch': 3, 'train_loss': 1.227141105333964, 'val_loss': 1.2398895378112793, 'val_iou': 0.08149995874010212, 'seconds': 5.3382780000101775}
+{'epoch': 4, 'train_loss': 1.2022767957051594, 'val_loss': 1.2111270332336426, 'val_iou': 0.08685628992642677, 'seconds': 5.3304915000044275}
+{'epoch': 5, 'train_loss': 1.1958098798327976, 'val_loss': 1.2033211708068847, 'val_iou': 0.07551616522881997, 'seconds': 5.303511799997068}
+{'epoch': 6, 'train_loss': 1.194300872378879, 'val_loss': 1.1945080661773682, 'val_iou': 0.1012817669565517, 'seconds': 5.29927509999834}
+{'epoch': 7, 'train_loss': 1.193590501997206, 'val_loss': 1.202147087097168, 'val_iou': 0.11161277716204009, 'seconds': 5.327565700004925}
+{'epoch': 8, 'train_loss': 1.194914581404792, 'val_loss': 1.2046364679336548, 'val_iou': 0.09173969764306637, 'seconds': 5.330889200005913}
+{'epoch': 9, 'train_loss': 1.1958026236428154, 'val_loss': 1.1966410980224609, 'val_iou': 0.10151221747739969, 'seconds': 5.308583799996995}
+{'epoch': 10, 'train_loss': 1.1902878280215794, 'val_loss': 1.2005993566513062, 'val_iou': 0.10041598706791233, 'seconds': 5.414382100003422}
+{'best_epoch': 7, 'best_val_iou_256': 0.11161277716204009, 'training_seconds': 74.2164057000191, 'peak_allocated_bytes': 683283968}

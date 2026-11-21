@@ -1,0 +1,27 @@
+{
+  "verified_train_positive_pixels": 34122684,
+  "verified_train_negative_pixels": 260789316,
+  "negative_positive_ratio": 7.642696453772511,
+  "expected_pos_weight": 2.764542720554796,
+  "saved_pos_weight": 2.764542720554796,
+  "binary_labels_verified": 5000,
+  "matching_preprocess_pairs_per_resolution": 16,
+  "preprocess_check_ids": [
+    "000500",
+    "000414",
+    "001308",
+    "000476",
+    "000689",
+    "000010",
+    "000823",
+    "002716",
+    "001881",
+    "004214",
+    "002086",
+    "004634",
+    "004860",
+    "003086",
+    "004728",
+    "003526"
+  ]
+}

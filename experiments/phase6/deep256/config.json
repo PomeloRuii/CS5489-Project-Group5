@@ -1,0 +1,60 @@
+{
+  "model": "DeepUNet",
+  "model_details": {
+    "change": "one additional downsample, 128-channel bridge, upsample and skip",
+    "initialization": "PyTorch defaults, V1 common tensors and post-init shuffle RNG matched",
+    "encoder_channels": [
+      16,
+      32,
+      64
+    ],
+    "decoder_channels": [
+      64,
+      32,
+      16
+    ]
+  },
+  "parameters": 487297,
+  "split_sha256": "0e02b642a2db6cac799fd99d816e06d14dba6e9422c3cd421e1b95a4ed8be217",
+  "train_images": 4500,
+  "validation_images": 500,
+  "input_size": 256,
+  "seed": 5489,
+  "training_epochs": 10,
+  "batch_size": 8,
+  "train_shuffle": true,
+  "validation_shuffle": false,
+  "dataloader_workers": 0,
+  "cpu_threads": 4,
+  "augmentation": "none",
+  "optimizer": "Adam",
+  "optimizer_arguments": {
+    "lr": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "amsgrad": false,
+    "maximize": false,
+    "foreach": null,
+    "capturable": false,
+    "differentiable": false,
+    "fused": null,
+    "decoupled_weight_decay": false
+  },
+  "scheduler": null,
+  "precision": "float32",
+  "pretrained_weights": false,
+  "external_data": false,
+  "input_processing": "RGB bilinear / 255, binary mask nearest",
+  "train_loss": "unweighted BCE + per-image soft Dice, smoothing 1",
+  "val_loss": "unweighted BCE + per-image soft Dice, smoothing 1",
+  "pos_weight": null,
+  "threshold": 0.5,
+  "selection": "maximum 256-grid validation foreground micro-IoU, earliest tie",
+  "torch": "2.9.1+cu128",
+  "cuda": "12.8",
+  "device": "NVIDIA GeForce RTX 5090"
+}

@@ -1,0 +1,16 @@
+Epoch 01/10: train loss 1.2704, val loss 1.2506, val IoU 0.0955, 27.1s
+Epoch 02/10: train loss 1.2368, val loss 1.2859, val IoU 0.1049, 10.6s
+Epoch 03/10: train loss 1.2277, val loss 1.2590, val IoU 0.1068, 10.6s
+Epoch 04/10: train loss 1.2248, val loss 1.2294, val IoU 0.0929, 10.7s
+Epoch 05/10: train loss 1.2198, val loss 1.2327, val IoU 0.0883, 10.7s
+Epoch 06/10: train loss 1.2171, val loss 1.2162, val IoU 0.1118, 10.6s
+Epoch 07/10: train loss 1.2146, val loss 1.2196, val IoU 0.1090, 10.8s
+Epoch 08/10: train loss 1.2114, val loss 1.2206, val IoU 0.1162, 10.6s
+Epoch 09/10: train loss 1.2104, val loss 1.2209, val IoU 0.1306, 10.6s
+Epoch 10/10: train loss 1.2091, val loss 1.2236, val IoU 0.1291, 10.6s
+{
+  "best_epoch": 9,
+  "best_val_iou_384": 0.13055462534317996,
+  "training_seconds": 122.93251100000634,
+  "peak_allocated_bytes": 1394900992
+}

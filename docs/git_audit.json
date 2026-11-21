@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "git_branch": "main",
+  "local_commits": 0,
+  "tracked_files": 0,
+  "configured_remotes": 0,
+  "proposed_files": 155,
+  "project_files_reviewed": 180,
+  "original_files_with_shared_copy": 140,
+  "original_files_local_only": 40,
+  "original_core_files_byte_identical": 27,
+  "notebooks_with_empty_outputs": 7,
+  "numeric_plot_files": 8,
+  "git_ignore_probes_passed": 51,
+  "credential_personal_path_and_restricted_link_pattern_hits": {},
+  "model_scores_matching_published_values": 8
+}

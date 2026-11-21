@@ -1,0 +1,51 @@
+Paired sliding-window inference completed for 80/500
+Paired sliding-window inference completed for 160/500
+Paired sliding-window inference completed for 240/500
+Paired sliding-window inference completed for 320/500
+Paired sliding-window inference completed for 400/500
+Paired sliding-window inference completed for 480/500
+Paired sliding-window inference completed for 500/500
+{
+  "A": {
+    "images": 500,
+    "TP": 25869385,
+    "FP": 38654913,
+    "FN": 199641669,
+    "precision": 0.40092470281505427,
+    "recall": 0.11471448756565165,
+    "dice": 0.1783878056355006,
+    "iou": 0.09792853066496639,
+    "macro_iou": 0.09994643311771821,
+    "predicted_fraction": 0.037393824961066,
+    "zero_overlap_images": 245,
+    "empty_predictions": 116,
+    "predicted_tiles": 48093,
+    "inference_seconds": 32.50724599979003,
+    "inference_median_seconds": 0.026027499996416736,
+    "high_texture_fpr": 0.019991969280932817,
+    "low_texture_fpr": 0.026633523282963794,
+    "pr_auc_binned": 0.18866523809385616,
+    "ap_binned": 0.18765219390983912
+  },
+  "B": {
+    "images": 500,
+    "TP": 28011309,
+    "FP": 41123995,
+    "FN": 197499745,
+    "precision": 0.4051664978575924,
+    "recall": 0.12421257629348847,
+    "dice": 0.19013511105404535,
+    "iou": 0.10505486471135309,
+    "macro_iou": 0.1175264265630794,
+    "predicted_fraction": 0.04006604545168529,
+    "zero_overlap_images": 220,
+    "empty_predictions": 92,
+    "predicted_tiles": 48093,
+    "inference_seconds": 19.13390780001646,
+    "inference_median_seconds": 0.02580580000358168,
+    "high_texture_fpr": 0.016417843513865667,
+    "low_texture_fpr": 0.029062314324569134,
+    "pr_auc_binned": 0.20015172181968413,
+    "ap_binned": 0.20478551127909872
+  }
+}

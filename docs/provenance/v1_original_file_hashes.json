@@ -1,0 +1,16 @@
+{
+  "baseline_metrics.json": "0f4f45222eac24168e48a7de0e5d249863614d85586238cf304e7ece825d5951",
+  "evaluate.py": "3f330252a85357569be783cb846be5bc4d181eced127b26fe23a7d234fa713f4",
+  "model.pth": "6349ac9464a8ec221b803babf8330b574fd67fa18debda02d71d6205a3df94d6",
+  "prepare_data.py": "97b355046c97bc1e01ad5783fb2c1eb2297e81492059dcc108b6e2002edbef24",
+  "project.py": "dd1ef4b1adebcf2f2404a49e6708071bdc5bf298136d4226aaa2f286318dc54a",
+  "python_environment.txt": "98d56a15bc54b23d537d307db8073e5410f44afd55f38ce9dfbeefbf1c3670b4",
+  "README.md": "d889b9f9b93b8f4a58450b243259236f76626d81adefacecb7be511a0f844816",
+  "split.json": "0e02b642a2db6cac799fd99d816e06d14dba6e9422c3cd421e1b95a4ed8be217",
+  "test.ipynb": "4b57014fb2c094d1153aad8892cff151da7b0ea6616f59e8351fd4b2a05d4bbf",
+  "train.ipynb": "7b7c6fd778e31e6c183b3533269522eae6ed65c8605dc4bf378036237ecde325",
+  "training_curves.png": "07e6be94c2e8b67259eba36997fc195076ea3a88d8b46e1fdb6da1d80c37ef66",
+  "training_history.csv": "25522fc10ce12dc9bc71279259b8aff7c357ceed40b413504affa9db12983879",
+  "validation_by_image.csv": "af9053a826097fac723a854b8756fbb90c373c4ff55386a8309b16e62f0a1fb0",
+  "validation_examples.png": "4e875b8819531cc738b2ab852f2594e74569e4961c4616c803ac3510752ab969"
+}

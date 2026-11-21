@@ -1,0 +1,93 @@
+{
+  "native_fixed_threshold": {
+    "V1": {
+      "images": 500,
+      "TP": 38708832,
+      "FP": 64155192,
+      "FN": 186802222,
+      "precision": 0.37631069148140656,
+      "recall": 0.17164937732941463,
+      "dice": 0.23575986482141012,
+      "iou": 0.13363252548244783,
+      "mean_image_iou": 0.14300716116666104,
+      "empty_predictions": 68,
+      "zero_overlap": 191,
+      "target_fraction": 0.13069062572461465,
+      "predicted_fraction": 0.059612881154427935
+    },
+    "Weighted": {
+      "images": 500,
+      "TP": 50111761,
+      "FP": 131047663,
+      "FN": 175399293,
+      "precision": 0.27661691505488556,
+      "recall": 0.22221421128207755,
+      "dice": 0.24644897385445325,
+      "iou": 0.1405428015380704,
+      "mean_image_iou": 0.1438512462391918,
+      "empty_predictions": 45,
+      "zero_overlap": 133,
+      "target_fraction": 0.13069062572461465,
+      "predicted_fraction": 0.10498748535169711
+    },
+    "384": {
+      "images": 500,
+      "TP": 38036175,
+      "FP": 62537350,
+      "FN": 187474879,
+      "precision": 0.37819272020146455,
+      "recall": 0.16866656567531274,
+      "dice": 0.23329024093469933,
+      "iou": 0.13204785887305245,
+      "mean_image_iou": 0.14911293890338145,
+      "empty_predictions": 107,
+      "zero_overlap": 225,
+      "target_fraction": 0.13069062572461465,
+      "predicted_fraction": 0.058285466190851
+    }
+  },
+  "native_all_foreground": {
+    "TP": 225511054,
+    "FP": 1500022455,
+    "FN": 0,
+    "precision": 0.13069062572461465,
+    "recall": 1.0,
+    "dice": 0.23116955735059752,
+    "iou": 0.13069062572461465
+  },
+  "resized_fixed_threshold_384": {
+    "TP": 1527078,
+    "FP": 2623532,
+    "FN": 7546241,
+    "precision": 0.36791652311347006,
+    "recall": 0.16830423354452764,
+    "dice": 0.23095677540313472,
+    "iou": 0.13055462534317996
+  },
+  "native_best_threshold_384": {
+    "threshold": 0.2,
+    "predicted_fraction": 0.17023707883264294,
+    "TP": 67507888.0,
+    "FP": 226241896.0,
+    "FN": 158003166.0,
+    "precision": 0.22981425579533363,
+    "recall": 0.2993551171997094,
+    "dice": 0.2600153258621056,
+    "iou": 0.14943541154518195
+  },
+  "paired_count_vs_v1": {
+    "higher": 136,
+    "same": 173,
+    "lower": 191
+  },
+  "paired_bootstrap_95_percent_native_micro_iou_delta_vs_v1": {
+    "all": [
+      -0.005083975192926707,
+      0.00210381496506367
+    ],
+    "lt_1_percent": [
+      -0.0012120236184848534,
+      0.007685167571562347
+    ]
+  }
+}

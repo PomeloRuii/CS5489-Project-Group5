@@ -1,0 +1,6 @@
+{
+  "best_epoch": 9,
+  "best_val_iou_384": 0.13055462534317996,
+  "training_seconds": 122.93251100000634,
+  "peak_allocated_bytes": 1394900992
+}

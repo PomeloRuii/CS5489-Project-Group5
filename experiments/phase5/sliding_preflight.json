@@ -1,0 +1,32 @@
+[
+  {
+    "height": 256,
+    "width": 256,
+    "tiles": 1,
+    "max_coordinate_error": 1.9260481287641795e-07
+  },
+  {
+    "height": 319,
+    "width": 517,
+    "tiles": 6,
+    "max_coordinate_error": 2.5057325181432333e-07
+  },
+  {
+    "height": 111,
+    "width": 768,
+    "tiles": 4,
+    "max_coordinate_error": 2.449634028955927e-07
+  },
+  {
+    "height": 17,
+    "width": 13,
+    "tiles": 1,
+    "max_coordinate_error": 1.3113021846145045e-07
+  },
+  {
+    "height": 513,
+    "width": 257,
+    "tiles": 6,
+    "max_coordinate_error": 2.5291068883603884e-07
+  }
+]

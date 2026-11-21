@@ -1,0 +1,18 @@
+CS5489 AIGC baseline - verified development environment
+
+Anaconda environment: cs5489 (Windows x64)
+Python: 3.11.16
+PyTorch: 2.9.1+cu128
+TorchVision: 0.24.1+cu128
+NumPy: 2.4.6
+pandas: 2.2.3
+Pillow: 12.3.0
+Matplotlib: 3.11.1
+Notebook kernel: ipykernel 7.3.0
+
+CUDA 12.8 was verified on an NVIDIA GeForce RTX 5090. Both notebooks
+select CUDA when available and otherwise use CPU. The baseline was
+exercised on both devices using a temporary synthetic dataset.
+
+Official PyTorch package source:
+https://pytorch.org/get-started/previous-versions/#v291

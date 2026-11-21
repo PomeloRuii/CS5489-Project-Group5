@@ -1,0 +1,7 @@
+{
+  "best_epoch": 8,
+  "best_val_crop_micro_iou": 0.10134209615005442,
+  "train_validation_seconds": 97.60163330001524,
+  "peak_allocated_bytes": 622231040,
+  "updates": 5630
+}

@@ -1,0 +1,39 @@
+{
+  "sole_experimental_change": "input size 256 -> 384",
+  "split": "../../baseline/split.json",
+  "split_sha256": "0e02b642a2db6cac799fd99d816e06d14dba6e9422c3cd421e1b95a4ed8be217",
+  "train_images": 4500,
+  "validation_images": 500,
+  "seed": 5489,
+  "model": "baseline/project.py:SmallUNet",
+  "initialization": "fresh PyTorch defaults",
+  "input_size": 384,
+  "training_epochs": 10,
+  "batch_size": 8,
+  "train_shuffle": true,
+  "validation_shuffle": false,
+  "dataloader_workers": 0,
+  "cpu_threads": 4,
+  "optimizer": "Adam",
+  "optimizer_arguments": {
+    "lr": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0
+  },
+  "loss": "unweighted BCEWithLogits + per-image soft Dice, smoothing 1",
+  "bce_pos_weight": null,
+  "augmentation": "none",
+  "precision": "float32 (no AMP)",
+  "input_processing": "bilinear RGB resize, divide by 255; nearest-neighbor binary mask resize",
+  "threshold": 0.5,
+  "selection_metric": "highest validation foreground micro-IoU at input resolution, ties keep earliest epoch",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.9.1+cu128",
+  "cuda": "12.8",
+  "runtime_scope": "train and validation passes, synchronized, excluding preprocessing and file writes",
+  "peak_memory_scope": "torch.cuda.max_memory_allocated, not total device VRAM"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "environment": "cs5489",
+  "fresh_jupyter_kernels": 3,
+  "imported_stage_entry_points": [
+    "baseline/evaluate.py",
+    "phase2/train_weighted.py",
+    "phase3/evaluate.py",
+    "phase4/evaluate.py",
+    "phase5/evaluate.py",
+    "phase6/evaluate.py"
+  ],
+  "reports_executed_retraining_disabled": [
+    "Phase 5",
+    "Phase 6 candidate"
+  ],
+  "inference": {
+    "source_images": "synthetic RGB",
+    "rows": 2,
+    "input_sizes": [
+      [
+        91,
+        57
+      ],
+      [
+        131,
+        79
+      ]
+    ],
+    "TA_CSV_columns": [
+      "ID",
+      "Predicted"
+    ],
+    "leading_zero_IDs": true,
+    "device": "cuda",
+    "original_shape_and_rle": "passed",
+    "frozen_checkpoint_sha256": "c4c158338f5b4d5a2c1614fc22ecae224d0c9b3169a724b87bcdf1de722c3f03"
+  },
+  "validation_metric_recomputation": [
+    "Model                  micro-IoU  macro-IoU      Dice  Precision     Recall    <1% IoU",
+    "V1                         13.36%     14.30%     23.58%     37.63%     17.16%      2.53%",
+    "Weighted BCE               14.05%     14.39%     24.64%     27.66%     22.22%      1.98%",
+    "384                        13.20%     14.91%     23.33%     37.82%     16.87%      2.61%",
+    "RGB + SRM                  11.35%     12.67%     20.39%     39.03%     13.80%      1.77%",
+    "Uniform Crop                9.79%      9.99%     17.84%     40.09%     11.47%      1.04%",
+    "Mask-aware Crop            10.51%     11.75%     19.01%     40.52%     12.42%      1.41%",
+    "Deep256                    11.45%     12.97%     20.55%     38.84%     13.97%      2.31%",
+    "All foreground             13.07%     12.31%     23.12%     13.07%    100.00%      0.53%"
+  ],
+  "course_images_or_labels_used_in_smoke_test": false,
+  "training_runs": 0
+}

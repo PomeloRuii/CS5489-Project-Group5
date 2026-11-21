@@ -1,0 +1,17 @@
+B 01/10: train loss 1.3753, val loss 1.3761, val crop IoU 0.0246, 7.8s
+B 02/10: train loss 1.3505, val loss 1.3662, val crop IoU 0.0970, 7.9s
+B 03/10: train loss 1.3541, val loss 1.3639, val crop IoU 0.1069, 8.2s
+B 04/10: train loss 1.3495, val loss 1.3603, val crop IoU 0.0962, 9.0s
+B 05/10: train loss 1.3485, val loss 1.3609, val crop IoU 0.0950, 9.5s
+B 06/10: train loss 1.3472, val loss 1.3641, val crop IoU 0.0988, 10.1s
+B 07/10: train loss 1.3399, val loss 1.3625, val crop IoU 0.1080, 10.4s
+B 08/10: train loss 1.3482, val loss 1.3733, val crop IoU 0.1145, 10.2s
+B 09/10: train loss 1.3432, val loss 1.3664, val crop IoU 0.1125, 10.2s
+B 10/10: train loss 1.3419, val loss 1.3610, val crop IoU 0.1065, 9.4s
+{
+  "best_epoch": 8,
+  "best_val_crop_micro_iou": 0.11449376529911356,
+  "train_validation_seconds": 92.69729619999998,
+  "peak_allocated_bytes": 622231040,
+  "updates": 5630
+}

@@ -1,0 +1,94 @@
+# CS5489 Phase 2 性能诊断与首轮受控实验
+
+## 课程约束与证据
+
+| 项目 | 材料中的原文或字段 | 本轮采用的判断 |
+|---|---|---|
+| 任务与模型输出 | “Main task: binary dense prediction” 及 “Output: pixel-wise binary mask (0: photographic; 1: AI-generated)”。Lecture7_1.pdf 第 3 页（本地留存） | 使用 RGB 输入，预测原图尺寸的 0/1 掩码。 |
+| 架构与深度学习 | “Include all model architecture definitions and dependencies in the submitted notebook (or accompanying files).” 推理模板第 3 单元（本地留存） | 课件与模板未指定架构，也未限制为传统算法。模板提供了 PyTorch 模型加载与推理示例。 |
+| 外部数据及预训练 | 所查课件、公告、环境清单、推理模板及 ZIP 内 README 均没有相关授权或明文禁令。课件（本地留存） · [环境清单](../../environment/ta_requirements_reference.txt) · 数据 ZIP（本地留存） | Kaggle Rules 未核实。本轮使用课程训练数据和随机初始化。 |
+| 官方评分公式 | “Track performance on the public leaderboard; use held-out training data for model selection”。“For the top three teams on the reserved test set”。Lecture7_1.pdf 第 5–6 页（本地留存） | 这两条说明公榜、选模和保留集奖励。材料未提供正式评分名称、公式、聚合或空掩码规则。公开访问课程 Kaggle 邀请页（课程渠道） 未取得 Evaluation 或 Rules 页面。 |
+| 推理 CSV 与 RLE | “creates a Kaggle-compatible CSV with `ID,Predicted`.” “Uses **column-major** flattening, **1-based** starting positions, and `start length` pairs. Empty mask → empty string.” 推理模板第 5、7 单元（本地留存） | TA 推理模板规定两列表头，ID 保留前导零，RLE 按列扫描且从 1 编号。 |
+| 数据包 sample CSV | `ID,annotation,height,width,Usage`。数据 ZIP（本地留存） 内 `AIGC Detection Dataset 2026/sample_submission.csv` 第一行 | 与 TA 模板不同。课程模板继续保留原格式，Kaggle 最终上传表头需以竞赛页面为准。 |
+| 截止时间与交付物 | “Submission deadline: December 13, 2026, 11:59:59 pm”。“A project report notebook (.ipynb) containing reproducible training code, execution outputs, observations, and analysis”。“A runnable test.ipynb notebook and a model.pth checkpoint for evaluation on the reserved test set”。Lecture7_1.pdf 第 5 页（本地留存） | Canvas 截止为 2026-12-13 23:59:59。公告还要求附 Python 环境说明 TXT。课件未列单独的 Kaggle 截止时间。 |
+
+## V1 协议复核
+
+- [V1 训练 Notebook](../baseline/train.ipynb) 使用轻量 U-Net（16/32/64 通道、一通道 logits）、随机初始化、256×256 输入、Adam（学习率 0.001、默认 betas 和 eps、无权重衰减）、批大小 8、10 轮、种子 5489。BCEWithLogits 与每图 soft Dice loss 相加，Dice 平滑项为 1。预测用 sigmoid 阈值 0.5。第 9 轮在 256×256 验证前景微平均 IoU 上最佳。
+- [V1 预处理代码](../baseline/prepare_data.py) 对 RGB 用双线性插值、二值标签用最近邻。训练与推理将 RGB 除以 255。原图推理先双线性上采样 logits（align_corners=False），再二值化。抽检的 12 张验证图重新预处理后与缓存像素、掩码均逐元素一致。阶段一的完整结构核验见 标注记录（本地留存）。
+- 在同一 500 张验证图上分别统计 TP、FP、FN，然后用总 TP/(TP+FP+FN) 得到微平均 IoU。Precision 为 TP/(TP+FP)，Recall 为 TP/(TP+FN)，Dice 为 2TP/(2TP+FP+FN)。逐图平均 IoU 另列，V1 原图为 14.30%。微平均中空图按其像素计数参与，若整个汇总范围的并集为空则 IoU、Dice 记为 1。逐图计算时双空同样记 1，精确率或召回率分母为 0 时记 0。该验证集所有标注都含前景。全前景参照与模型使用完全相同的原图、标注及计数函数。
+- CPU 概率统计从原图上采样后的每张图按步长 256 抽样，起始相位随图变化，按真实前景和背景分别统计分位数与直方图。阈值扫描的 TP、FP、FN 来自全部原图像素。
+- V1 文件在实验前后用 [SHA-256 清单](../../docs/provenance/v1_original_file_hashes.json) 检查。后续训练和评估读取同一份 [固定划分](../baseline/split.json) 和缓存。
+
+## V1 性能诊断
+
+训练集 256×256 的真实前景占 **11.57%**。原图验证集真实前景占 **13.07%**，V1 在 0.5 阈值下只预测了 **5.96%** 的像素为前景。按图等权平均的真实和预测面积分别为 **12.31%** 与 **5.66%**。V1 有 **186,802,222** 个漏检前景像素，召回率为 **17.16%**。500 张里有 68 张预测全空，191 张完全无交集。全前景参照的 TP、FP、FN 分别是 225,511,054、1,500,022,455、0，原图微平均 IoU 为 13.07%。
+
+V1 真实前景概率中位数 **0.135**，背景为 **0.109**。前景概率第 75 百分位为 0.269，背景第 95 百分位为 0.419。这说明许多真正前景的分数偏低，前景、背景也有明显重叠。阈值从 0.5 降到 0.1，召回率从 17.16% 上升到 79.13%，精确率降到 17.47%，原图微平均 IoU 只升到 16.70%。0.1 是在本轮给定阈值网格中得分最高的一档，位于网格边缘。用同一验证集选阈值和读出最佳分数会带来选择偏差，正式比较固定为 0.5，且没有在公测集试阈值。
+
+| V1 原图真实前景面积 | 图数 | 0.5 阈值微平均 IoU | Precision | Recall |
+|---|---:|---:|---:|---:|
+| <1% | 73 | 2.53% | 2.77% | 23.32% |
+| 1%–<5% | 171 | 15.30% | 21.40% | 34.92% |
+| 5%–<15% | 139 | 13.27% | 27.03% | 20.67% |
+| 15%–<30% | 52 | 22.45% | 63.97% | 25.69% |
+| 30%–100% | 65 | 11.10% | 75.17% | 11.52% |
+
+小目标组的主要问题是误检占比高。在 <1% 组，真实面积逐图平均 0.56%，预测面积平均 3.08%。漏检也发生在大编辑区域，30% 以上组的召回只有 11.52%。
+
+V1 训练 loss 从 1.2665 降到 1.2000，验证 loss 从 1.2502 到 1.2113，第 6 轮最低为 1.2042。两条曲线后段趋平，没有持续拉大的训练与验证间距，也没有损失爆炸。证据支持模型在当前输入与训练设置下的区分能力不足，不能仅据 loss 归因为过拟合或训练代码故障。已复现原始指标和抽检预处理，未发现需先修的代码错误，因此未额外做小样本拟合。
+
+## 受控训练设计
+
+V1 已使用 BCE + Dice，本轮仅给 **BCE 正类项**加权。按训练集前景比例计算 `pos_weight = sqrt(背景像素数 / 前景像素数) = 2.764543`，用平方根缓和完全逆频率的权重。Dice、模型、划分、初始化种子、分辨率、优化器、批大小和轮数保持一致。验证 loss 用与 V1 相同的无权 BCE + Dice 读取，选模仍用 256×256、0.5 阈值的微平均 IoU。加权版训练 loss 和 V1 的数值尺度不同。[代码](train_weighted.py) · [完整训练配置](weighted/config.json)
+
+## 真实结果对照
+
+以下分割指标均用固定阈值 **0.5** 和相同的验证集。除明确标注 256×256 的一行外，分割计数和指标都按原图分辨率汇总。
+
+| 指标 | Baseline V1 | 前景加权 BCE | 变化 |
+|---|---:|---:|---:|
+| 官方分数 | 未确认公式 | 未确认公式 | 无法比较 |
+| 原图微平均 IoU | 13.36% | 14.05% | +0.69 个百分点 |
+| 256×256 微平均 IoU | 12.99% | 13.53% | +0.54 个百分点 |
+| 原图逐图平均 IoU | 14.30% | 14.39% | +0.08 个百分点 |
+| Precision | 37.63% | 27.66% | −9.97 个百分点 |
+| Recall | 17.16% | 22.22% | +5.06 个百分点 |
+| Dice | 23.58% | 24.64% | +1.07 个百分点 |
+| TP | 38,708,832 | 50,111,761 | +11,402,929 |
+| FP | 64,155,192 | 131,047,663 | +66,892,471 |
+| FN | 186,802,222 | 175,399,293 | −11,402,929 |
+| 最佳轮次 | 9 | 7 | 提前 2 轮 |
+| 10 轮训练与验证用时 | 65.36 s | 48.48 s | −16.88 s |
+| PyTorch 分配显存峰值 | 591.41 MiB（两步复测） | 593.41 MiB（完整训练） | +2.00 MiB，采样范围不同 |
+
+V1 未记录历史峰值，用相同架构、8 张输入和 Adam 在临时模型上复测两步，包含优化器状态，未更新保存权重。显存列是 PyTorch 分配量，并非整卡占用。V1 首轮用时 20.95 s，加权版在短显存复测后开始记录训练；第 2–10 轮的用时中位数分别约 4.92 s 和 4.83 s，不能把总时间差归因于损失加权。[V1 历史记录](../baseline/training_history.csv) · [显存复测记录](v1/memory_probe.json) · [加权版训练记录](weighted/training_history.csv) · [加权版训练汇总](weighted/training_summary.json)
+
+固定 0.5 时，加权版超出同协议的全前景参照 **0.99 个百分点**，也超出 V1 **0.69 个百分点**。但逐图平均只增加约 0.08 个百分点，具体有 215 张改善、116 张持平、169 张下降。预测全空从 68 张降到 45 张，零交集从 191 张降到 133 张。预测前景面积从 5.96% 增至 10.50%，仍低于真实的 13.07%。这一轮找回了一部分前景，也错标了更多背景。
+
+面积 <1% 的组尤其明显，微平均 IoU 由 2.53% 降到 1.98%，1%–<5% 组从 15.30% 降到 10.44%。30% 以上组由 11.10% 升到 14.18%。对照图中 001556 的鸭子被找回，003814 的背景出现大片误检。[V1 面积分组](v1/area_bins.csv) · [加权版面积分组](weighted/area_bins.csv) · 同图预测对照（本地留存）
+
+| 原图阈值 | V1 IoU | 前景加权 BCE IoU |
+|---:|---:|---:|
+| 0.1 | 16.70% | 13.93% |
+| 0.2 | 16.44% | 15.18% |
+| 0.3 | 14.82% | 16.94% |
+| 0.4 | 13.97% | 16.10% |
+| 0.5 | 13.36% | 14.05% |
+| 0.6 | 12.75% | 12.65% |
+| 0.7 | 11.51% | 12.16% |
+| 0.8 | 8.42% | 0.12% |
+| 0.9 | 3.72% | 0.00% |
+
+加权版的真实前景与背景概率中位数分别升到约 0.334 和 0.299，两个分布都向上移动。两版在给定阈值网格内各自的最好 IoU 只差 **0.24 个百分点**，且来自同一验证集，未证明对未见测试数据有同等改善。对应的 CSV 记录了每个阈值的 IoU、Precision、Recall 及 TP/FP/FN。[V1 阈值扫描](v1/threshold_sweep.csv) · [加权版阈值扫描](weighted/threshold_sweep.csv) · [V1 概率直方图](v1/probability_histogram.csv) · [加权版概率直方图](weighted/probability_histogram.csv)
+
+## 下一步和交接
+
+下一次训练优先做 **256→384 的单变量分辨率对照**，以 V1 的无权 BCE + Dice 和固定数据划分为参照。两版在极小编辑区域上的原图微平均 IoU 都不超过 2.53%，仅提高正类权重反而增加小区域误检。提高输入分辨率可直接检验更细的空间信息能否帮助定位。验证时报原图结果和 <1% 分组，并沿用固定阈值作为主比较。若要选新阈值，在独立数据上估计这个选阈值方案的表现。
+
+- 加权最佳权重（本地留存） · [训练配置](weighted/config.json) · [训练曲线](weighted/training_curves.png)
+- [V1 逐图验证](v1/validation_by_image.csv) · [加权版逐图验证](weighted/validation_by_image.csv)
+- [V1 完整计数和分位数](v1/metrics.json) · [加权版完整计数和分位数](weighted/metrics.json)
+- [诊断代码](diagnose.py) · [加权训练代码](train_weighted.py) · [V1 文件校验](../../docs/provenance/v1_original_file_hashes.json)
+
+从本目录用 cs5489 运行 `python diagnose.py v1`、`python train_weighted.py`、`python diagnose.py weighted`。训练脚本会在已有实验日志时停止，以保留本轮结果。若需要 TA 推理，使用 [baseline/test.ipynb](../baseline/test.ipynb)，将 model_path 指到本轮的 weighted/model.pth。

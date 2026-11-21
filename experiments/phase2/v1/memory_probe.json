@@ -1,0 +1,5 @@
+{
+  "method": "two 8-image Adam steps on a temporary V1 architecture at 256x256, including Adam state",
+  "peak_allocated_bytes": 620133888,
+  "historical_peak_available": false
+}

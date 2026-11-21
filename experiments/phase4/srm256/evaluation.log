@@ -1,0 +1,160 @@
+Native evaluation 80/500
+Native evaluation 160/500
+Native evaluation 240/500
+Native evaluation 320/500
+Native evaluation 400/500
+Native evaluation 480/500
+Native evaluation 500/500
+Common 256-grid PR {'model': 'V1', 'pixels': 32768000, 'foreground_prevalence': np.float64(0.12312728881835938), 'PR_AUC_trapezoid': 0.24483901470455693, 'average_precision': 0.24483909405928975, 'foreground_probability_mean': 0.2555899918079376, 'foreground_probability_median': 0.1364460587501526, 'background_probability_mean': 0.13861025869846344, 'background_probability_median': 0.10917678475379944}
+Common 256-grid PR {'model': 'Weighted', 'pixels': 32768000, 'foreground_prevalence': np.float64(0.12312728881835938), 'PR_AUC_trapezoid': 0.22851122444917002, 'average_precision': 0.22789498422720575, 'foreground_probability_mean': 0.39603111147880554, 'foreground_probability_median': 0.33560869097709656, 'background_probability_mean': 0.29692867398262024, 'background_probability_median': 0.2987929582595825}
+Common 256-grid PR {'model': '384', 'pixels': 32768000, 'foreground_prevalence': np.float64(0.12312728881835938), 'PR_AUC_trapezoid': 0.22872701209965662, 'average_precision': 0.22872408658904203, 'foreground_probability_mean': 0.24289582669734955, 'foreground_probability_median': 0.12540383636951447, 'background_probability_mean': 0.14288339018821716, 'background_probability_median': 0.11021164059638977}
+Common 256-grid PR {'model': 'SRM', 'pixels': 32768000, 'foreground_prevalence': np.float64(0.12312728881835938), 'PR_AUC_trapezoid': 0.221507018605699, 'average_precision': 0.22150730776362865, 'foreground_probability_mean': 0.2534911334514618, 'foreground_probability_median': 0.17889142036437988, 'background_probability_mean': 0.16125251352787018, 'background_probability_median': 0.14235860109329224}
+{
+  "all_models_native": {
+    "V1": {
+      "images": 500,
+      "TP": 38708832,
+      "FP": 64155192,
+      "FN": 186802222,
+      "precision": 0.37631069148140656,
+      "recall": 0.17164937732941463,
+      "dice": 0.23575986482141012,
+      "iou": 0.13363252548244783,
+      "macro_iou": 0.14300716116666104,
+      "predicted_fraction": 0.059612881154427935,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 68,
+      "zero_overlap": 191
+    },
+    "Weighted": {
+      "images": 500,
+      "TP": 50111761,
+      "FP": 131047663,
+      "FN": 175399293,
+      "precision": 0.27661691505488556,
+      "recall": 0.22221421128207755,
+      "dice": 0.24644897385445325,
+      "iou": 0.1405428015380704,
+      "macro_iou": 0.1438512462391918,
+      "predicted_fraction": 0.10498748535169711,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 45,
+      "zero_overlap": 133
+    },
+    "384": {
+      "images": 500,
+      "TP": 38036175,
+      "FP": 62537350,
+      "FN": 187474879,
+      "precision": 0.37819272020146455,
+      "recall": 0.16866656567531274,
+      "dice": 0.23329024093469933,
+      "iou": 0.13204785887305245,
+      "macro_iou": 0.14911293890338145,
+      "predicted_fraction": 0.058285466190851,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 107,
+      "zero_overlap": 225
+    },
+    "SRM": {
+      "images": 500,
+      "TP": 31111363,
+      "FP": 48603123,
+      "FN": 194399691,
+      "precision": 0.39028493516222384,
+      "recall": 0.13795937027548105,
+      "dice": 0.20385818958662502,
+      "iou": 0.11349782539704249,
+      "macro_iou": 0.12672450795774085,
+      "predicted_fraction": 0.04619700839434698,
+      "target_fraction": 0.13069062572461465,
+      "empty_predictions": 25,
+      "zero_overlap": 119
+    }
+  },
+  "all_foreground": {
+    "TP": 225511054,
+    "FP": 1500022455,
+    "FN": 0,
+    "precision": 0.13069062572461465,
+    "recall": 1.0,
+    "dice": 0.23116955735059752,
+    "iou": 0.13069062572461465
+  },
+  "srm_best_threshold": {
+    "threshold": 0.1,
+    "predicted_fraction": 0.6665291325849297,
+    "TP": 186543300.0,
+    "FP": 963575053.0,
+    "FN": 38967754.0,
+    "precision": 0.16219487282627512,
+    "recall": 0.8272024660928594,
+    "dice": 0.2712115618505384,
+    "iou": 0.15687955556947736
+  },
+  "srm_vs_v1_images": {
+    "higher": 190,
+    "same": 99,
+    "lower": 211
+  },
+  "pr_at_shared_256_grid": [
+    {
+      "model": "V1",
+      "pixels": 32768000,
+      "foreground_prevalence": 0.12312728881835938,
+      "PR_AUC_trapezoid": 0.24483901470455693,
+      "average_precision": 0.24483909405928975,
+      "foreground_probability_mean": 0.2555899918079376,
+      "foreground_probability_median": 0.1364460587501526,
+      "background_probability_mean": 0.13861025869846344,
+      "background_probability_median": 0.10917678475379944
+    },
+    {
+      "model": "Weighted",
+      "pixels": 32768000,
+      "foreground_prevalence": 0.12312728881835938,
+      "PR_AUC_trapezoid": 0.22851122444917002,
+      "average_precision": 0.22789498422720575,
+      "foreground_probability_mean": 0.39603111147880554,
+      "foreground_probability_median": 0.33560869097709656,
+      "background_probability_mean": 0.29692867398262024,
+      "background_probability_median": 0.2987929582595825
+    },
+    {
+      "model": "384",
+      "pixels": 32768000,
+      "foreground_prevalence": 0.12312728881835938,
+      "PR_AUC_trapezoid": 0.22872701209965662,
+      "average_precision": 0.22872408658904203,
+      "foreground_probability_mean": 0.24289582669734955,
+      "foreground_probability_median": 0.12540383636951447,
+      "background_probability_mean": 0.14288339018821716,
+      "background_probability_median": 0.11021164059638977
+    },
+    {
+      "model": "SRM",
+      "pixels": 32768000,
+      "foreground_prevalence": 0.12312728881835938,
+      "PR_AUC_trapezoid": 0.221507018605699,
+      "average_precision": 0.22150730776362865,
+      "foreground_probability_mean": 0.2534911334514618,
+      "foreground_probability_median": 0.17889142036437988,
+      "background_probability_mean": 0.16125251352787018,
+      "background_probability_median": 0.14235860109329224
+    }
+  ],
+  "srm_texture_background_check": [
+    {
+      "group": "abs_mean_residual_lt_0.5",
+      "background_pixels": 16549220,
+      "fp": 399922,
+      "false_positive_rate": 0.024165610222113186
+    },
+    {
+      "group": "abs_mean_residual_ge_0.5",
+      "background_pixels": 12184145,
+      "fp": 515599,
+      "false_positive_rate": 0.0423172081422209
+    }
+  ]
+}
