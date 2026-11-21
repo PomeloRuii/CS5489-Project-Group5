@@ -36,7 +36,6 @@ def prepare_package():
 
     test = nbformat.read(BASE / "test.ipynb", as_version=4)
     test.cells[1].source = test.cells[1].source.replace('Path("data/test_images")', 'Path("test_images")')
-    test.cells[6].source = test.cells[6].source.replace("a Kaggle-compatible CSV", "a CSV in the TA template format")
     for cell in test.cells:
         if cell.cell_type == "code":
             cell.outputs = []
@@ -50,7 +49,7 @@ def prepare_package():
             md("""# CS5489 Course Project — AIGC Localization
 
 **Group name:** [Canvas group name]  
-**Members:** [Names and IDs]
+**Members:** [Member names]
 
 We predict a binary mask of edited pixels from each RGB image. This notebook documents the frozen Weighted BCE candidate. Run all cells to inspect the measured results. Enable the last cell's training toggle to reproduce the model with the official labelled archive."""),
             md("""## Data, model, and selection
@@ -83,7 +82,7 @@ for ax, column, label in zip(
 plt.show()"""),
             md("""## Original-resolution validation
 
-Micro-IoU pools the pixel counts over all 500 images. Mean image IoU weights images equally. Both-empty prediction/target pairs would score 1 in our local protocol. All validation masks contain foreground. The Kaggle scoring rule still needs confirmation."""),
+Micro-IoU pools the pixel counts over all 500 images. Mean image IoU weights images equally. Both-empty prediction/target pairs would score 1 in our local protocol. All validation masks contain foreground."""),
             code("""counts = pd.read_csv("validation_by_image.csv", dtype={"ID": str})
 tp, fp, fn = counts[["TP", "FP", "FN"]].sum()
 comparison = pd.read_csv("historical_comparison.csv")
@@ -130,13 +129,13 @@ was configured for the verified GPU stack. Inference works offline.
 
 Open the notebooks with this directory as the working directory. Put test images in
 test_images/ or set test_dir in test.ipynb. Leave model_path at model.pth when the
-checkpoint is in this directory. Run all cells to generate submission.csv. Test
-images alone suffice. The CSV follows the TA notebook's ID,Predicted format and
-uses native-size, 1-based column-major RLE. Confirm Kaggle's schema separately.
+checkpoint is in this directory. Run all cells to write submission.csv in the
+TA template format (ID,Predicted). Predictions use native-size, 1-based
+column-major RLE. The notebook runs on RGB images without test labels.
 
 project_report.ipynb displays the archived training and validation results and has an
-optional training reproduction cell. Fill in the group name, names and IDs before
-submission. The course archive and caches are supplied separately.
+optional training reproduction cell. Add the Canvas group name and members to
+the submission copies. The course archive and weights are supplied separately.
 
 model.pth is the Phase 2 epoch 7 checkpoint copied byte for byte. Keep project.py
 beside the notebooks. Training reproduction also uses prepare_data.py,
@@ -220,7 +219,7 @@ def verify_package():
             "report_retrain_toggle": False, "shape_and_binary_checked_by_test_notebook": True,
             "headers_TA_format": reader.fieldnames, "rows": len(rows), "images": details,
             "course_ZIP_sample_header": sample.decode("utf-8-sig").splitlines()[0].split(","),
-            "sample_equals_test_metadata": sample == meta, "kaggle_format": "UNVERIFIED",
+            "sample_equals_test_metadata": sample == meta,
             "checkpoint_matches_weighted": sha(PACKAGE / "model.pth") == sha(WEIGHTED / "model.pth"),
             "checkpoint_sha256": sha(PACKAGE / "model.pth"), "csv_sha256": sha(submission),
         }

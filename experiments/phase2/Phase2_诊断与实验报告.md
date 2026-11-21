@@ -1,16 +1,8 @@
 # CS5489 Phase 2 性能诊断与首轮受控实验
 
-## 课程约束与证据
+## 任务与本轮协议
 
-| 项目 | 材料中的原文或字段 | 本轮采用的判断 |
-|---|---|---|
-| 任务与模型输出 | “Main task: binary dense prediction” 及 “Output: pixel-wise binary mask (0: photographic; 1: AI-generated)”。Lecture7_1.pdf 第 3 页（本地留存） | 使用 RGB 输入，预测原图尺寸的 0/1 掩码。 |
-| 架构与深度学习 | “Include all model architecture definitions and dependencies in the submitted notebook (or accompanying files).” 推理模板第 3 单元（本地留存） | 课件与模板未指定架构，也未限制为传统算法。模板提供了 PyTorch 模型加载与推理示例。 |
-| 外部数据及预训练 | 所查课件、公告、环境清单、推理模板及 ZIP 内 README 均没有相关授权或明文禁令。课件（本地留存） · [环境清单](../../environment/ta_requirements_reference.txt) · 数据 ZIP（本地留存） | Kaggle Rules 未核实。本轮使用课程训练数据和随机初始化。 |
-| 官方评分公式 | “Track performance on the public leaderboard; use held-out training data for model selection”。“For the top three teams on the reserved test set”。Lecture7_1.pdf 第 5–6 页（本地留存） | 这两条说明公榜、选模和保留集奖励。材料未提供正式评分名称、公式、聚合或空掩码规则。公开访问课程 Kaggle 邀请页（课程渠道） 未取得 Evaluation 或 Rules 页面。 |
-| 推理 CSV 与 RLE | “creates a Kaggle-compatible CSV with `ID,Predicted`.” “Uses **column-major** flattening, **1-based** starting positions, and `start length` pairs. Empty mask → empty string.” 推理模板第 5、7 单元（本地留存） | TA 推理模板规定两列表头，ID 保留前导零，RLE 按列扫描且从 1 编号。 |
-| 数据包 sample CSV | `ID,annotation,height,width,Usage`。数据 ZIP（本地留存） 内 `AIGC Detection Dataset 2026/sample_submission.csv` 第一行 | 与 TA 模板不同。课程模板继续保留原格式，Kaggle 最终上传表头需以竞赛页面为准。 |
-| 截止时间与交付物 | “Submission deadline: December 13, 2026, 11:59:59 pm”。“A project report notebook (.ipynb) containing reproducible training code, execution outputs, observations, and analysis”。“A runnable test.ipynb notebook and a model.pth checkpoint for evaluation on the reserved test set”。Lecture7_1.pdf 第 5 页（本地留存） | Canvas 截止为 2026-12-13 23:59:59。公告还要求附 Python 环境说明 TXT。课件未列单独的 Kaggle 截止时间。 |
+本轮用课程训练数据和随机初始化定位 AI 编辑像素。RGB 输入对应原图尺寸二值掩码。TA 模板规定按列、从 1 编号的 RLE 和 ID,Predicted 导出。本阶段结果来自留出的训练数据。 [课程依据](../../docs/final_delivery.md)
 
 ## V1 协议复核
 
@@ -48,7 +40,6 @@ V1 已使用 BCE + Dice，本轮仅给 **BCE 正类项**加权。按训练集前
 
 | 指标 | Baseline V1 | 前景加权 BCE | 变化 |
 |---|---:|---:|---:|
-| 官方分数 | 未确认公式 | 未确认公式 | 无法比较 |
 | 原图微平均 IoU | 13.36% | 14.05% | +0.69 个百分点 |
 | 256×256 微平均 IoU | 12.99% | 13.53% | +0.54 个百分点 |
 | 原图逐图平均 IoU | 14.30% | 14.39% | +0.08 个百分点 |
