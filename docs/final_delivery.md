@@ -1,31 +1,23 @@
-# 最终项目交付检查
+# 课程交付与剩余工作
 
-课程项目报告需要可复现训练代码、执行结果、观察和分析。Canvas 还需可运行的 test.ipynb、与模型定义相符的 model.pth，以及 Python 环境说明。课件所列截止时间为 **2026-12-13 23:59:59**。最终提交使用课程渠道和本地完整包。
+## A. VERIFIED｜原始课程要求
 
-| 项目 | 状态与待办 |
+| 项目 | 要求与原始出处 |
 | --- | --- |
-| project_report.ipynb | 候选报告可离线展示 Weighted BCE 结果，包含重训入口。补入下面的六轮实验叙述、符号与指标口径、失败分析和课程许可下的定性示例。生成正式报告时执行并保留所需输出，Git 副本清除输出。 |
-| test.ipynb | Phase 6 已在独立内核用真实权重及 3 张公测图验证，Phase 7A 从共享副本复核运行入口。提交前用最终选定权重再次检查全尺寸 RLE。 |
-| model.pth | 暂用 Weighted BCE 的 Epoch 7 冻结权重。保留 V1、384 及三尺度实验的原始 checkpoint。权重留在本地提交包。 |
-| Python 环境说明 | 已有经验证的 Windows、CUDA、Python 和包版本，随正式候选附 TXT。 |
-| Canvas 组名与成员 | 在两份 Notebook 及 Canvas 相关位置填写真实小组名、成员姓名及学号，核对命名一致。仅在课程提交副本填写所需身份资料。 |
-| Kaggle 官方指标 | **UNVERIFIED**。在 Overview → Evaluation 核对公式、逐图或全局聚合及空 mask 处理，并核对 TA 保留集是否同口径。 |
-| Kaggle CSV 及外部资源 | **UNVERIFIED**。在 Data 核对正式 sample submission 的字段及列顺序，在 Rules 核对外部数据、预训练和运行环境。TA 模板的 ID,Predicted 和 ZIP 中样例表头不同。 |
-| 最终选模 | 用已确认的评价指标在固定验证集重排现有候选。当前 Weighted BCE 按原图 micro-IoU 领先，384 版在三份既有整图候选中逐图平均 IoU 最高。 |
+| 任务 | 输入 RGB 图像，输出标示生成或编辑像素的 0/1 掩码。教授的 Project 说明见 Lecture7_1.pdf 第 2–3 页。 |
+| 数据与选模 | 课程有 5,000 张训练图、500 张 Kaggle 公测图和 500 张保留评估图。留出部分训练数据验证和选模。包内 README.txt 说明训练标注和公测图在 ZIP 内，保留集和测试答案在包外。见 Lecture7_1.pdf 第 4–5 页。 |
+| 报告 | 向 Canvas 提交含可复现训练代码、执行输出、观察与分析的 Notebook。评分包含实验对照、失败分析和清晰简洁的报告。见 Lecture7_1.pdf 第 5–6 页。 |
+| 推理 | 向 Canvas 提交可运行的 test.ipynb 和 model.pth。TA 只需修改路径，推理使用 RGB 图和权重，无需真值。模型定义和依赖可随附，预处理与训练一致。见 Lecture7_1.pdf 第 5 页及 TestTemplate_2026_Inference_Verification_ColumnMajor.ipynb 第 1–4、9 单元。 |
+| 输出 | TA 模板输出原图尺寸二值掩码。RLE 按列扫描，从 1 编号，用起点和长度表示连续前景，空掩码写空字符串。每张图对应一行 ID,Predicted，ID 来自文件名并保留前导零。见 TA 原始推理模板第 3、5–9 单元。 |
+| 小组与环境 | 每组至多五人，所有成员加入同一 Canvas Course Project Group，项目报告用 Canvas 组名。若参加 Kaggle，使用同一组名，优先用校邮箱，使用其他邮箱时向主 TA 备案。包与版本可按硬件选用，在 Canvas 附简短 Python 环境说明 TXT。见 Lecture7_1.pdf 第 5 页及本会话提供的 TA 项目公告第 1–2 节。 |
+| 截止时间 | **2026-12-13 23:59:59**。见 Lecture7_1.pdf 第 5 页。 |
+| 榜单与汇报 | 课件安排用 Kaggle 公开榜跟踪表现，用留出的训练数据选模。竞赛奖励对应保留测试集前三名，项目展示可选。TA 汇报公告第 1 点要求小组在 11 月 30 日前告知 TA 是否参加展示。见 Lecture7_1.pdf 第 5–6 页及本会话的 TA 汇报公告。 |
 
-## 六阶段研究主线
+## B. PROJECT DECISION｜本组剩余工作
 
-| 阶段 | 原图 micro-IoU | 报告中需要解释的变化 |
-| --- | ---: | --- |
-| 1 · V1 256 | 13.36% | 轻量两尺度 U-Net 建立比较基准。全前景参照在同一批图上为 13.07%，V1 的召回偏低。 |
-| 2 · Weighted BCE | 14.05% | 正类加权提升召回并增加误报。全局改善约 0.69 个百分点，<1% 图像的 micro-IoU 由 2.53% 降至 1.98%。 |
-| 3 · V1 384 | 13.20% | 更高的输入分辨率增加训练耗时。逐图平均 IoU 有提升，原图全局 IoU 未改善。 |
-| 4 · RGB + SRM | 11.35% | 固定高通残差提供了额外噪声通道。结果低于 V1。讨论纹理伪相关及简化实现的限制。 [SRM 结果](../experiments/phase4/srm256/native_comparison.csv) |
-| 5 · Uniform / Mask-aware Crop | 9.79% / 10.51% | 配对 Bootstrap 的 B−A 95% 区间为 +0.12 至 +1.31 个百分点，小区域改善证据不足，两组均低于整图参照。说明滑窗尺度差异及推理成本。 |
-| 6 · 三尺度 U-Net 256 | 11.45% | 更大的理论感受野减少部分误报，同时召回下降。记录固定训练预算下的表现，并保留独立提交验证结果。 |
+- 完成 [报告 Notebook](../experiments/phase6/submission_candidate/project_report.ipynb) 的正式提交副本，补入六阶段对照、失败案例和局限，保留执行输出及复现入口。
+- 使用固定的 4,500/500 划分和本地 micro-IoU 保留 Weighted BCE 作为候选。填入 Canvas 小组名与成员，复跑 [推理 Notebook](../experiments/phase6/submission_candidate/test.ipynb)，随正式提交副本提供权重、模型定义及 [环境说明](../experiments/phase6/submission_candidate/python_environment.txt)。
 
-正式报告应保留固定验证划分、原图 micro-IoU 与逐图平均 IoU 的区别、小编辑区域表现、全前景参照、训练与推理耗时。局限包括单个随机种子、同一验证集的选模影响、小面积编辑样本较少，以及官方评价口径尚待核实。若在 Canvas 允许范围内加入案例，选成功和失败的同一批样本，并写清误检和漏检。
+## C. UNSUPPORTED / UNNECESSARY｜交付清单之外
 
-## Git 仓库与课程提交
-
-公开仓库的共享范围是源码、配置、清理输出的 Notebook 及数值研究记录。库内样本记录只含课程样本编号和统计量。课程数据可共享的范围以课程通知为准。最终课程提交从原独立包制作，原图、课程 ZIP、权重、含样例图的执行输出及提交 ZIP 均在 Git 之外交接。 [原始清单](file_inventory.csv) · [共享规则与校验](sharing_review.md)
+所查原始资料没有明确规定每组须提交 Kaggle 预测或取得榜单分数才能交 Canvas。资料可确认 TA 模板的导出列，未包含竞赛平台的独立 CSV 或运行环境规则，也未给出公开榜与保留集的评分公式及其关系。本项目使用课程数据和随机初始化，外部数据及预训练许可核查不列为本次交付任务。

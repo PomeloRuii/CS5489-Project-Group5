@@ -30,6 +30,6 @@
 
 训练和推理共用 [project.py](project.py)。权重含模型参数和输入尺寸。交接时应附上模型代码、权重和对应的 Notebook。需要复核原图分辨率的验证指标时，用 cs5489 执行 [evaluate.py](evaluate.py)。
 
-课程推理模板导出 ID、Predicted 两列，压缩包中的 sample_submission.csv 则与 test.csv 相同，有 ID、annotation、height、width、Usage 五列。Kaggle 上传前需到竞赛页面确认实际表头和评分指标。
+TA 推理模板导出 ID、Predicted 两列。课程数据 ZIP 的 sample_submission.csv 列出公测图片及元数据。
 
 后续对比请保存本版 model.pth 和验证记录，沿用 split.json 中的划分。重新运行训练 Notebook 会写入同名权重和训练记录。
