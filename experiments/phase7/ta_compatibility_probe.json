@@ -1,0 +1,6 @@
+{
+  "checkpoint_mb": 204.82,
+  "inference_peak_vram_mb": 428.16,
+  "gpu_tta_ms_per_image": 1705.21,
+  "cpu_tta_ms_per_image": 587.2
+}

@@ -1,0 +1,15 @@
+CS5489 Phase 7 frozen ConvNeXt-Small Detail-UNet candidate
+Verified environment: Windows x64, Conda cs5489, Python 3.11.16
+torch==2.9.1+cu128 (compatible with TA torch>=2.9.0, CUDA or CPU)
+torchvision==0.24.1+cu128 (compatible with TA torchvision>=0.24.0)
+numpy==2.4.6
+pandas==2.2.3
+Pillow==12.3.0
+matplotlib==3.11.1
+ipykernel==7.3.0
+Notebook execution: nbformat==5.11.1, nbclient==0.11.0
+
+Notes for TAs:
+- Inference uses ONLY torch, torchvision, numpy, pandas, Pillow (no scipy/timm/smp required).
+- test.ipynb instantiates ConvNeXt-Small with pretrained=False and loads model.pth 100% offline.
+- Peak GPU inference VRAM is ~428 MB (fits comfortably on RTX A1000 8 GB and runs on CPU fallback).

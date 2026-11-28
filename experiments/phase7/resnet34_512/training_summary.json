@@ -1,0 +1,10 @@
+{
+  "arch": "resnet34_unet",
+  "best_epoch": 19,
+  "best_val_micro_iou_512": 0.4681631775175213,
+  "best_val_mean_img_iou": 0.4197932068594673,
+  "training_seconds": 753.77,
+  "peak_allocated_bytes": 4649552384,
+  "checkpoint_sha256": "951cb6b48c99a8f65ade8bc4a18cc014eaad062dbf1ea7165f8a41df79763a76",
+  "checkpoint_bytes": 97896619
+}

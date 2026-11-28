@@ -13,7 +13,9 @@
 | 截止时间 | **2026-12-13 23:59:59**。见 Lecture7_1.pdf 第 5 页。 |
 | 汇报 | 项目展示可选。TA 汇报公告第 1 点要求小组在 11 月 30 日前告知 TA 是否参加展示。见 Lecture7_1.pdf 第 6 页及本会话的 TA 汇报公告。 |
 
-## B. PROJECT DECISION｜本组剩余工作
+## B. PROJECT DECISION｜本组交付状态与最终检查
 
-- 完成 [报告 Notebook](../experiments/phase6/submission_candidate/project_report.ipynb) 的正式提交副本，补入六阶段对照、失败案例和局限，保留执行输出及复现入口。
-- 使用固定的 4,500/500 划分和本地 micro-IoU 保留 Weighted BCE 作为候选。填入 Canvas 小组名与成员，复跑 [推理 Notebook](../experiments/phase6/submission_candidate/test.ipynb)，随正式提交副本提供权重、模型定义及 [环境说明](../experiments/phase6/submission_candidate/python_environment.txt)。
+- 已升级并冻结 **Phase 7B（`ConvNeXt-Small Detail-UNet`, 512×512, TTA@0.50）** 为最终候选（500 张原图 micro-IoU **81.01%**，micro-Dice **89.51%**，PR-AUC **94.60%**，峰值推理显存 **428 MB**，纯 `torch + torchvision` 离线加载）。
+- [报告 Notebook](../experiments/phase7/submission_candidate/project_report.ipynb) 已补齐 Phase 1–7 全量对照、SRM 消融、OOF 阈值校验、失败案例分析并保留完整执行输出与复训入口。
+- [推理 Notebook](../experiments/phase7/submission_candidate/test.ipynb) 已在全部 500 张官方公测图上完成端到端实测验证，无测试标签依赖。
+- **Canvas 提交前唯一人工步骤**：在 [project_report.ipynb](../experiments/phase7/submission_candidate/project_report.ipynb) 与 [test.ipynb](../experiments/phase7/submission_candidate/test.ipynb) 顶部填入本组所有成员姓名，并将本地 `model.pth`、`models.py`、`python_environment.txt` 与两份 Notebook 一并上传。

@@ -1,0 +1,10 @@
+{
+  "arch": "convnext_small_unet",
+  "best_epoch": 25,
+  "best_val_micro_iou_512": 0.8026617382121918,
+  "best_val_mean_img_iou": 0.7125275285654934,
+  "training_seconds": 1429.42,
+  "peak_allocated_bytes": 15609841664,
+  "checkpoint_sha256": "4df672d2d0504f428e6919cc2c4dac229f46313ddbc5f2d694eb2f6fba9d6dd4",
+  "checkpoint_bytes": 214772099
+}

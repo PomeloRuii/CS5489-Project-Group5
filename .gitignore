@@ -8,6 +8,7 @@ images/
 masks/
 cache256/
 cache384/
+cache512/
 patch_cache/
 *.npy
 *.npz
@@ -20,6 +21,7 @@ patch_cache/
 *.png
 !**/training_curves.png
 !**/pr_curves.png
+!**/phase7_comparison.png
 train.csv
 test.csv
 sample_submission.csv

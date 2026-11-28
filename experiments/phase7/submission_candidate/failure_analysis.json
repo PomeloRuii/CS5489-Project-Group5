@@ -1,0 +1,13 @@
+{
+  "total_val": 500,
+  "iou_ge_080": 316,
+  "iou_ge_050": 388,
+  "iou_lt_020": 70,
+  "low_iou_median_target_frac": 0.01290294792715195,
+  "all_val_median_target_frac": 0.0521984135298882,
+  "low_iou_under_1pct_count": 28,
+  "low_iou_empty_pred_count": 31,
+  "low_iou_false_alarm_only_count": 18,
+  "low_iou_underpredict_count": 54,
+  "low_iou_overpredict_count": 12
+}

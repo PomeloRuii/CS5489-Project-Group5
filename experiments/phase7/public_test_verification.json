@@ -1,0 +1,10 @@
+{
+  "rows": 500,
+  "ids_match_test_csv": true,
+  "empty_masks": 47,
+  "predicted_fg_fraction_public_test": 0.09419603784869301,
+  "submission_csv_bytes": 4396190,
+  "submission_csv_sha256": "cf4da7db82c4e99330a547d59a96e05845ec759b8587545de50a790d8396e7a3",
+  "model_pth_sha256": "4df672d2d0504f428e6919cc2c4dac229f46313ddbc5f2d694eb2f6fba9d6dd4",
+  "elapsed_seconds": 72.71
+}

@@ -27,6 +27,7 @@ reproduction/model.pth 是新生成的权重，test.ipynb 使用 model_path 指�
 | 4 | phase4/preflight.py 核对特征和学习流程，phase4/train.py 训练 SRM 对照，phase4/evaluate.py 评估。依赖此前的缓存、结果表、分组及对照权重。 |
 | 5 | phase5/inference_preflight.py 验证真实图的滑窗推理，phase5/prepare.py 建裁块缓存，phase5/train.py 训练 A 和 B，phase5/evaluate.py 评估。需要 V1 权重及 Phase 3 数值统计，完整裁块缓存约 24 GB。 |
 | 6 | phase6/architecture_audit.py 严格检查 V1、Weighted BCE 和 384 原权重。将其分别放在 baseline/model.pth、phase2/weighted/model.pth、phase3/resolution384/model.pth。用 phase6/train_deep.py --out RUN_DIR 新建三尺度实验，phase6/evaluate.py --out RUN_DIR 在课程 ZIP 上复核。已有 checkpoint 可放入运行目录并配套其 training_history.csv 来复算。 |
+| 7 | phase7/prepare_cache.py 从课程 ZIP 构建 512×512 缓存；phase7/train_phase7.py 支持 resnet34_unet、convnext_small_unet、convnext_small_srm_unet 受控训练（沿用 baseline/split.json）；phase7/evaluate_phase7.py 在 500 张原图验证集复核并运行 5 折 OOF 阈值校验；最终提交包位于 phase7/submission_candidate/。 |
 
 全量重训使用新输出目录或只包含所需输入的阶段副本。保留的训练历史会使 Phase 2–5 训练入口拒绝覆盖，所以重训副本应把目标阶段的旧输出留在档案目录。Phase 6 的 freeze_candidate.py 是本地打包脚本，会生成包含权重的 ZIP 和公测 RLE 验证产物，因此从独立运行目录操作。
 
